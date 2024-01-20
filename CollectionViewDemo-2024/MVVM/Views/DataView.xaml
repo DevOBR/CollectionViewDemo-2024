@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:DataTemplates="clr-namespace:CollectionViewDemo_2024.Selectors"
+             x:Class="CollectionViewDemo_2024.MVVM.Views.DataView"
+             Title="Data View">
+    <ContentPage.Resources>
+        <DataTemplates:ProductDataTemplateSelector x:Key="ProductTemplates"/>
+    </ContentPage.Resources>
+    <!--<CollectionView
+        ItemsSource="{Binding Products}"
+        ItemTemplate="{StaticResource ProductStyle}"/>-->
+
+    <RefreshView
+        Command="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsRefreshing}">
+        <CollectionView
+            ItemsSource="{Binding Products}"
+            ItemTemplate="{StaticResource ProductTemplates}"
+            RemainingItemsThreshold="1"
+            RemainingItemsThresholdReachedCommand="{Binding ThresholdReachedCommand}"/>
+    </RefreshView>
+</ContentPage>
